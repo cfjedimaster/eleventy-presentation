@@ -1,0 +1,20 @@
+---
+layout: main
+title: Data test
+---
+
+<h2>Cats</h2>
+
+<ul>
+{% for cat in cats %}
+<li><a href="/cats/{{cat.name | slug }}/">{{ cat.name }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Films</h2>
+
+<ul>
+{% for film in films %}
+<li><a href="/films/{{film.title | slug }}/">{{ film.title }}</a></li>
+{% endfor %}
+</ul>

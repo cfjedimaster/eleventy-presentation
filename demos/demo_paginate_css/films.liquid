@@ -1,0 +1,16 @@
+---
+layout: main
+pagination:
+   data: films
+   size: 1
+   alias: film
+permalink: "/films/{{film.title | slug}}/index.html"
+---
+
+<h2>Cats</h2>
+
+<p>{{ film.title }} came out in {{ film.release_date }}</p>
+
+<pre>
+{{ film.opening_crawl }}
+</pre>

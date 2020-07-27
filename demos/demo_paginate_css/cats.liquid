@@ -1,0 +1,12 @@
+---
+layout: main
+pagination:
+   data: cats
+   size: 1
+   alias: cat
+permalink: "/cats/{{cat.name | slug}}/index.html"
+---
+
+<h2>Cats</h2>
+
+<p>{{ cat.name }} is {{ cat.age }} years old and is {{ cat.gender }}</p>

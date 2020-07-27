@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introducing Eleventy</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+
+				<section>
+					<img src="img/possum.webp" style="float: left;height:250px"">
+					<h1>Introducing Eleventy</h1>
+				</section>
+
+
+				<section>
+					<h2>read.me</h2>
+					<ul>
+						<li>Raymond Camden</li>
+						<li>Lead Developer Evangelist for HERE</li>
+						<li>Second best "Just Dance 2019" player (in my house)</li>
+						<li>Blogging at raymondcamden.com</li>
+						<li>Tweeting @raymondcamden</li>
+						<li>Repo: <a href="https://github.com/cfjedimaster/eleventy-presentation" target="_new">github.com/cfjedimaster/eleventy-presentation</a></li>
+					</ul>
+				</section>
+
+				<section>
+				<h2>Eleventy (AKA 11ty)</h2>
+				<p>Woot, yet another SSG!</p>
+				</section>
+
+				<section>
+				<h2>Basics</h2>
+				<ul>
+				<li class="fragment">JavaScript-based</li>
+				<li class="fragment">Flexible</li>
+				<li class="fragment">Fast(ish)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>More Basics</h2>
+				<ul>
+				<li class="fragment"><a href="https://www.11ty.dev/" target="_new">www.11ty.dev</a></li>
+				<li class="fragment">Version 0.11 (coincidence)</li>
+				<li class="fragment"><a href="https://github.com/11ty/eleventy/" target="_new">github.com/11ty/eleventy/</a></li>
+				<li class="fragment"><a href="https://twitter.com/eleven_ty" target="_new">@eleven_ty</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Installing</h2>
+				<pre><code class="language-bash" data-trim>
+npm install -g @11ty/eleventy
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Installing (alt)</h2>
+				<pre><code class="language-bash" data-trim>
+npm init -y
+npm install --save-dev @11ty/eleventy
+npx @11ty/eleventy
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>CLI</h2>
+				<ul>
+					<li class="fragment"><code>eleventy</code> - convert site to static</li>
+					<li class="fragment"><code>eleventy --serve</code> - convert site to static and fire up a hot reloading server of awesomeness</li>
+					<li class="fragment">Lots of flags</li>
+				</ul>
+				</section>
+
+				<section>
+					<h1>Demo</h1>
+					<aside class="notes">
+					Make a MD file. Use cli to output html. 
+					Show output folder. 
+					Then try the server and show editing, reloading, changes.
+					</aside>
+				</section>
+
+				<section>
+				<h2>Template Languages</h2>
+				<ul>
+				<li class="fragment">HTML</li>
+				<li class="fragment">Markdown</li>
+				<li class="fragment">JavaScript</li>
+				<li class="fragment">Liquid</li>
+				<li class="fragment">Nunjucks</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Template Languages - MOAR!</h2>
+				<ul>
+				<li class="fragment">Handlebars</li>
+				<li class="fragment">Mustache</li>
+				<li class="fragment">EJS</li>
+				<li class="fragment">HAML</li>
+				<li class="fragment">Pug</li>
+				<li class="fragment">JavaScript Template Literals</li>
+				</ul>
+				</section>
+
+				<section>
+					<h1>Demo</h1>
+					<aside class="notes">
+					Make a ray.liquid file, show outputting some stuff
+					</aside>
+				</section>
+
+				<section>
+				<h2>Layouts and Includes</h2>
+				<ul>
+				<li class="fragment">Defined in front matter</li>
+				<li class="fragment">Loaded at <code>_includes</code></li>
+				<li class="fragment">Can be chained</li>
+				</ul>
+				</section>
+
+				<section>
+				<pre><code class="language-html" data-trim>
+---
+layout: somename
+title: Something
+another: thing
+--- 
+
+Your MD file, Liquid, etc
+				</code></pre>
+				</section>
+
+				<section>
+					<h1>Demo</h1>
+					<aside class="notes">
+					Add an includes, main.liquid, show use of {{ content }}
+					</aside>
+				</section>
+
+				<section>
+				<h2>Collections</h2>
+				<ul>
+				<li class="fragment">Way to group files</li>
+				<li class="fragment">Tag based</li>
+				<li class="fragment">Can be dynamic</li>
+				</ul>
+				</section>
+
+				<section>
+				<pre><code class="language-html" data-trim>
+---
+layout: somename
+title: Something
+tags: post
+--- 
+
+Your MD file, Liquid, etc
+				</code></pre>
+				</section>
+
+				<section>
+				<pre><code class="language-html" data-trim>
+{% for post in collections.post %}
+  use the post object here
+{% endfor %}
+				</code></pre>
+				</section>
+
+				<section>
+				<h1>Demo</h1>
+				<aside class="notes">
+				show demo_collections
+				</aside>
+				</section>
+
+				<section>
+				<h2>Data</h2>
+				<ul>
+				<li class="fragment">Page data</li>
+				<li class="fragment">Directory data</li>
+				<li class="fragment">Global data (JSON, JS)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Global Data</h2>
+				<ul>
+				<li class="fragment">Stored in <code>_data</code></li>
+				<li class="fragment">Name of file is the name of the variable</li>
+				<li class="fragment">JS files can be async</li>
+				</ul>
+				</section>
+
+				<section>
+				<h1>Demo</h1>
+				<aside class="notes">
+				show demo_data
+				</aside>
+				</section>
+
+				<section>
+				<h2>Pagination</h2>
+				<ul>
+				<li class="fragment">Lets you paginate data (duh)</li>
+				<li class="fragment">Eleventy makes it incredibly easy</li>
+				<li class="fragment">Provides utilities/helpers for linking and such</li>
+				<li class="fragment"><a href="https://www.11ty.dev/docs/pagination/" target="_new">Docs</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Pagination</h2>
+				<p>Solves the "virtual" page problem!</p>
+				</section>
+
+				<section>
+				<h1>Demo</h1>
+				<aside class="notes">
+				show demo_paginate
+				</aside>
+				</section>
+
+				<section>
+				<h2>More Custom Stuff</h2>
+				<ul>
+				<li class="fragment">Filters - <code>{{ something | aFilter }}</code></li>
+				<li class="fragment">Shortcodes - <code>{% user fname,lname %}</code></li>
+				<li class="fragment">Plugin system (<a href="https://www.11ty.dev/docs/plugins/" target="_new">Docs</a>)</li>
+				<li class="fragment">Driven by <code>.eleventy.js</code></li>
+				</ul>
+				</section>
+
+				<section>
+					<h2>Passthrough File Copy</h2>
+					<ul>
+						<li class="fragment">If Eleventy doesn't recognize a file, it ignores it.</li>
+						<li class="fragment">If Eleventy doesn't recognize a file, it ignores it.</li>
+						<li class="fragment">You can tell Elevent to copy a file or set of files</li>
+					</ul>
+				</section>
+
+				<section>
+				<pre><code class="language-js" data-trim>
+module.exports = function(eleventyConfig) {
+
+	eleventyConfig.addPassthroughCopy("img");
+	eleventyConfig.addPassthroughCopy("css");
+
+};
+				</code></pre>
+				</section>
+
+				<section>
+				<h1>Demo</h1>
+				<aside class="notes">
+				show demo_paginate_css
+				</aside>
+				</section>
+
+				<section>
+				<h2>More Information!</h2>
+				<ul>
+				<li class="fragment"><a href="https://www.11ty.dev/docs" target="_new">Docs</a></li>
+				<li class="fragment"><a href="https://www.raymondcamden.com/tags/eleventy/" target="_new">My posts</a></li>
+				<li class="fragment"><a href="https://join.slack.com/t/thenewdynamic/shared_invite/enQtMjkwNjYwNTY0NjkxLTFkNGQ1YjMwZGNjNjY0YzY4MmM2YTBhZTY0YjkyOTBmYmE4NjMwY2M3ODMzZDIwNzg2ZTBkZjdjYjVlM2Q2ZDA" target="_new">The New Dynamic Slack</a></li>
+				</ul>
+				</section>
+
+   				<section data-background="img/cat_qa.png" data-background-opacity="0.2">
+					<h1>Questions</h1>
+					<p>reach me at @raymondcamden</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+				slideNumber:'c/t'
+			});
+		</script>
+	</body>
+</html>
