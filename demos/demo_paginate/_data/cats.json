@@ -3,5 +3,11 @@
 {"name":"Luna", "age":4, "gender":"female"},
 {"name":"Alece", "age":12, "gender":"female"},
 {"name":"Cracker", "age":3, "gender":"male"},
-{"name":"Pig", "age":6, "gender":"female"}
+{"name":"Pig", "age":6, "gender":"female"},
+{"name":"Zeus", "age":12, "gender":"male"},
+{"name":"Athena", "age":4, "gender":"female"},
+{"name":"Minerva", "age":8, "gender":"female"},
+{"name":"Joe", "age":9, "gender":"male"},
+{"name":"Bob", "age":7, "gender":"male"},
+{"name":"Leroy", "age":5, "gender":"male"}
 ]

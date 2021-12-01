@@ -12,6 +12,13 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<style>
+		.twocol {
+			display: grid;
+			grid-template-columns: 66% 33%;
+		}
+		</style>
+
 	</head>
 	<body>
 		<div class="reveal">
@@ -20,20 +27,27 @@
 
 				<section>
 					<img src="img/possum.webp" style="float: left;height:250px"">
-					<h1>Introducing Eleventy</h1>
+					<h2>Taking Jamstack All the Way to Eleven</h2>
+					<p>An introduction to Eleventy</p>
 				</section>
 
 
 				<section>
-					<h2>read.me</h2>
-					<ul>
-						<li>Raymond Camden</li>
-						<li>Lead Developer Evangelist for HERE</li>
-						<li>Second best "Just Dance 2019" player (in my house)</li>
-						<li>Blogging at raymondcamden.com</li>
-						<li>Tweeting @raymondcamden</li>
-						<li>Repo: <a href="https://github.com/cfjedimaster/eleventy-presentation" target="_new">github.com/cfjedimaster/eleventy-presentation</a></li>
-					</ul>
+					<div class="twocol">
+						<div>
+						<h2>read.me</h2>
+						<ul>
+							<li>Raymond Camden</li>
+							<li>Senior Developer Evangelist @ Adobe</li>
+							<li>Blogging at raymondcamden.com</li>
+							<li>Tweeting @raymondcamden</li>
+							<li>Repo: <a href="https://github.com/cfjedimaster/eleventy-presentation" target="_new">github.com/cfjedimaster/eleventy-presentation</a></li>
+						</ul>
+						</div>
+						<div>
+						<img src="img/ray.jpg" style="max-width:70%">
+						</div>
+					</div>
 				</section>
 
 				<section>
@@ -42,7 +56,16 @@
 				</section>
 
 				<section>
-				<h2>Basics</h2>
+				<h2>Pre-Reqs</h2>
+				<ul>
+				<li class="fragment">WTF is... Jamstack</li>
+				<li class="fragment">WTF is... SSG</li>
+				<li class="fragment">More info: <a href="https://jamstack.org/" target="_new">jamstack.org</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Eleventy is...</h2>
 				<ul>
 				<li class="fragment">JavaScript-based</li>
 				<li class="fragment">Flexible</li>
@@ -51,10 +74,10 @@
 				</section>
 
 				<section>
-				<h2>More Basics</h2>
+				<h2>Basic Info</h2>
 				<ul>
 				<li class="fragment"><a href="https://www.11ty.dev/" target="_new">www.11ty.dev</a></li>
-				<li class="fragment">Version 0.11 (coincidence)</li>
+				<li class="fragment">Version 0.12.1 (1.0 is VERY soon)</li>
 				<li class="fragment"><a href="https://github.com/11ty/eleventy/" target="_new">github.com/11ty/eleventy/</a></li>
 				<li class="fragment"><a href="https://twitter.com/eleven_ty" target="_new">@eleven_ty</a></li>
 				</ul>
@@ -64,6 +87,14 @@
 				<h2>Installing</h2>
 				<pre><code class="language-bash" data-trim>
 npm install -g @11ty/eleventy
+				</code></pre>
+				</section>
+
+				<!-- remove when 1.0 is released... -->
+				<section>
+				<h2>Installing (1.0)</h2>
+				<pre><code class="language-bash" data-trim>
+npm install -g @11ty/eleventy@beta
 				</code></pre>
 				</section>
 
@@ -95,6 +126,16 @@ npx @11ty/eleventy
 				</section>
 
 				<section>
+				<h2>Building Pages</h2>
+				<ul>
+				<li class="fragment">Pick your template language of your choice</li>
+				<li class="fragment">Create a file (/foo.md)</li>
+				<li class="fragment">Eleventy manages the output (/foo/index.html)</li>
+				<li class="fragment">You have control over that output (URL, filename, etc)</li>
+				</ul>
+				</section>
+
+				<section>
 				<h2>Template Languages</h2>
 				<ul>
 				<li class="fragment">HTML</li>
@@ -113,8 +154,27 @@ npx @11ty/eleventy
 				<li class="fragment">EJS</li>
 				<li class="fragment">HAML</li>
 				<li class="fragment">Pug</li>
-				<li class="fragment">JavaScript Template Literals</li>
+				<li class="fragment">Custom</li>
 				</ul>
+				</section>
+
+				<section>
+				<h2>Template Languages - EVEN MOAR!</h2>
+				<ul>
+				<li class="fragment">Markdown + Liquid</li>
+				<li class="fragment">Mixed
+					<ul>
+						<li class="fragment">You can use Liquid in one file, EJS in another...</li>
+						<li class="fragment">Or use EJS inside a Liquid template (as one example)</li>
+				</li>
+				</ul>
+				<aside class="notes">
+Markdown files also support Liquid. So you can make a foo.md, include Liquid code, and it will be preprocessed
+before the Markdown is converted. If you would rather _another_ language, you can configure 11ty.
+
+ALso - you can (in 1.0) use a template in one language, like Liquid, and have a block done in another lang. EJS is 
+a good example of this.
+				</aside>
 				</section>
 
 				<section>
@@ -127,6 +187,8 @@ npx @11ty/eleventy
 				<section>
 				<h2>Layouts and Includes</h2>
 				<ul>
+				<li class="fragment">What is a layout?</li>
+				<li class="fragment">What is an include?</li>
 				<li class="fragment">Defined in front matter</li>
 				<li class="fragment">Loaded at <code>_includes</code></li>
 				<li class="fragment">Can be chained</li>
@@ -153,10 +215,27 @@ Your MD file, Liquid, etc
 				</section>
 
 				<section>
+				<h2>Organizing Content</h2>
+				<ul>
+				<li class="fragment">Eleventy's interperting files into static assets</li>
+				<li class="fragment">You have groups of content that are shared:
+					<ul>
+					<li class="fragment">Blog posts</li>
+					<li class="fragment">Press releases</li>
+					<li class="fragment">Documentation</li>
+					</ul>
+				</li>
+				<li class="fragment">Eleventy provides a way to define these groups</li>
+				<li class="fragment">Eleventy provides a way to work with these groups</li>
+				</ul>
+				</section>
+
+				<section>
 				<h2>Collections</h2>
 				<ul>
 				<li class="fragment">Way to group files</li>
 				<li class="fragment">Tag based</li>
+				<li class="fragment">Tags defined in front matter</li>
 				<li class="fragment">Can be dynamic</li>
 				</ul>
 				</section>
@@ -175,8 +254,10 @@ Your MD file, Liquid, etc
 
 				<section>
 				<pre><code class="language-html" data-trim>
+<!-- imagine sorting and limiting too... -->
 {% for post in collections.post %}
-  use the post object here
+  use the post object here: 
+  {{ post.title }} written on {{ post.date }}
 {% endfor %}
 				</code></pre>
 				</section>
@@ -187,6 +268,41 @@ Your MD file, Liquid, etc
 				show demo_collections
 				</aside>
 				</section>
+
+				<section>
+				<h2>Content Dates</h2>
+				<ul>
+				<li class="fragment">Critical for a LOT of content</li>
+				<li class="fragment">You can define a date in your front matter</li>
+				<li class="fragment">Eleventy provides one based on file creation</li>
+				<li class="fragment">Dates should be a valid YAML date value (<a href="https://yaml.org/type/timestamp.html" target="_new">spec</a>)</li>
+				<li class="fragment"><code>date: 2021-04-08</code></li>
+				<li class="fragment">Also supports "Last Modified" and "Created" (<code>date: Last Modified</code>)</li>
+				<li class="fragment">Your filepath (file name or folder) can use a YYYY-MM-DD format.</li>
+				</ul>
+				</section>
+
+				<section>
+				<h1>Demo</h1>
+				<aside class="notes">
+				show demo_dates
+				</aside>
+				</section>
+
+				<!-- 
+				i dont like this here - may shift it later 
+
+				<section>
+				<h2>Filters!</h2>
+				<ul>
+				<li class="fragment">Your template language has built in formatting functions (probably)</li>
+				<li class="fragment">Example: <code> {{ someNumber | round }}</code></li>
+				<li class="fragment">Eleventy lets you add your own</li>
+				<li class="fragment">We'll get there soon... (honest)</li>
+				</ul>
+				</section>
+				-->
+
 
 				<section>
 				<h2>Data</h2>
@@ -203,6 +319,7 @@ Your MD file, Liquid, etc
 				<li class="fragment">Stored in <code>_data</code></li>
 				<li class="fragment">Name of file is the name of the variable</li>
 				<li class="fragment">JS files can be async</li>
+				<li class="fragment">Can also be defined via configuration stuff we haven't covered yet (soon though...)</li>
 				</ul>
 				</section>
 
@@ -236,40 +353,134 @@ Your MD file, Liquid, etc
 				</section>
 
 				<section>
-				<h2>More Custom Stuff</h2>
+				<h2>Configuration</h2>
 				<ul>
-				<li class="fragment">Filters - <code>{{ something | aFilter }}</code></li>
-				<li class="fragment">Shortcodes - <code>{% user fname,lname %}</code></li>
-				<li class="fragment">Plugin system (<a href="https://www.11ty.dev/docs/plugins/" target="_new">Docs</a>)</li>
-				<li class="fragment">Driven by <code>.eleventy.js</code></li>
+				<li class="fragment">CLI lets you modify many things</li>
+				<li class="fragment">Eleventy looks for: <code>.eleventy.js</code></li>
+				<li class="fragment">Lets you configure <i>everything</i></li>
+				<li class="fragment">Custom filters, short codes, global data, plugins, and more</li>
 				</ul>
-				</section>
+				</section>				
 
 				<section>
-					<h2>Passthrough File Copy</h2>
-					<ul>
-						<li class="fragment">If Eleventy doesn't recognize a file, it ignores it.</li>
-						<li class="fragment">If Eleventy doesn't recognize a file, it ignores it.</li>
-						<li class="fragment">You can tell Eleventy to copy a file or set of files</li>
-					</ul>
-				</section>
-
-				<section>
-				<pre><code class="language-js" data-trim>
+				<h2>.eleventy.js</h2>
+				<pre><code data-language="javascript" data-trim>
 module.exports = function(eleventyConfig) {
+	// various APIs available via eleventyConfig object
 
-	eleventyConfig.addPassthroughCopy("img");
-	eleventyConfig.addPassthroughCopy("css");
-
-};
+	// optional return:
+	return {
+		dir: {
+			input:"my_awesome_code",
+			output: "my_site"
+		}
+	}
+};				
 				</code></pre>
 				</section>
 
 				<section>
-				<h1>Demo</h1>
-				<aside class="notes">
-				show demo_paginate_css
-				</aside>
+				<h2>.eleventy.js</h2>
+				<pre><code data-language="javascript" data-trim>
+module.exports = function(eleventyConfig) {
+
+	eleventyConfig.addPassthroughCopy("img");
+	eleventyConfig.addPassthroughCopy("css");
+	eleventyConfig.addPassthroughCopy("scripts/*.js");
+
+};				
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>.eleventy.js</h2>
+				<pre><code data-language="javascript" data-trim>
+module.exports = function(eleventyConfig) {
+
+	eleventyConfig.addPassthroughCopy("css");
+	eleventyConfig.addWatchTarget("./css");
+
+};				
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>.eleventy.js</h2>
+				<pre><code data-language="javascript" data-trim>
+module.exports = function(eleventyConfig) {
+
+	const english = new Intl.DateTimeFormat('en');
+
+	/*
+	I can now do: {{ someDate | dtFormat }}
+	*/
+	eleventyConfig.addFilter("dtFormat", function(date) {
+		return english.format(date);
+	});
+
+};				
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>.eleventy.js</h2>
+				<pre><code data-language="javascript" data-trim>
+module.exports = function(eleventyConfig) {
+
+	eleventyConfig.addGlobalData('site', {
+		name:'My Site',
+		author:'Raymond Camden'
+	});
+
+};				
+				</code></pre>
+				</section>
+
+				<section>
+				<h2>Partial List of Configuration Options</h2>
+				<ul>
+				<li class="fragment">Files to copy, ignore or watch for changes</li>
+				<li class="fragment">Directory options</li>
+				<li class="fragment">Filters and Shortcodes</li>
+				<li class="fragment">Custom collections</li>
+				<li class="fragment">Plugins (more on this in a sec)</li>
+				<li class="fragment">Global data</li>
+				<li class="fragment">Custom options for your template engine</li>
+				<li class="fragment">Events</li>
+				<li class="fragment"><a href="https://www.11ty.dev/docs/config/" target="_new">Docs</a></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Plugins</h2>
+				<ul>
+				<li class="fragment">Add new features to Eleventy</li>
+				<li class="fragment">RSS</li>
+				<li class="fragment">Image handing</li>
+				<li class="fragment">Serverless</li>
+				<li class="fragment">Adobe PDF Embed (mine!)</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>.eleventy.js</h2>
+				<pre><code data-language="javascript" data-trim>
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+
+module.exports = function(eleventyConfig) {
+
+	eleventyConfig.addPlugin(pluginRss);
+
+	/*
+	eleventyConfig.addPlugin(pluginRss, {
+		posthtmlRenderOptions: {
+			closingSingleTag: "default" 
+		}
+	});
+	*/
+
+};				
+				</code></pre>
 				</section>
 
 				<section>
@@ -277,8 +488,24 @@ module.exports = function(eleventyConfig) {
 				<ul>
 				<li class="fragment"><a href="https://www.11ty.dev/docs" target="_new">Docs</a></li>
 				<li class="fragment"><a href="https://www.raymondcamden.com/tags/eleventy/" target="_new">My posts</a></li>
+				<li class="fragment"><a href="" target="_new">Blog repo</a></li>
 				<li class="fragment"><a href="https://join.slack.com/t/thenewdynamic/shared_invite/enQtMjkwNjYwNTY0NjkxLTFkNGQ1YjMwZGNjNjY0YzY4MmM2YTBhZTY0YjkyOTBmYmE4NjMwY2M3ODMzZDIwNzg2ZTBkZjdjYjVlM2Q2ZDA" target="_new">The New Dynamic Slack</a></li>
+				<li class="fragment"><a href="https://www.11ty.dev/blog/" target="_new">Eleventy blog</a></li>
 				</ul>
+				</section>
+
+				<section>
+				<div class="twocol">
+				<div>
+					<h2>The Jamstack Book</h2>
+					<ul>
+					<li>By Brian Rinaldi and myself</li>
+					<li>MEAP Access now (full release soon)</li>
+					<li>www.manning.com/books/the-jamstack-book</li>
+					</ul>
+				</div><div>
+					<img src="img/jamstackbook.png" style="max-width: 70%">
+				</div>
 				</section>
 
    				<section data-background="img/cat_qa.png" data-background-opacity="0.2">

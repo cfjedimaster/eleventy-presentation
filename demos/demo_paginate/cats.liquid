@@ -2,11 +2,31 @@
 layout: main
 pagination:
    data: cats
-   size: 1
-   alias: cat
-permalink: "/cats/{{cat.name | slug}}/index.html"
+   size: 5
+   alias: cats
 ---
 
-<h2>Cats</h2>
+{% comment %}
+If you don't use alias above, Eleventy calls it pagination.item
+{% endcomment %}
 
-<p>{{ cat.name }} is {{ cat.age }} years old and is {{ cat.gender }}</p>
+<h2>List of Cats</h2>
+
+<ul>
+{% for cat in cats %}
+<li>{{ cat.name }}</li>
+{% endfor %}
+</ul>
+
+<p>
+{% if pagination.href.previous %}
+<a href="{{ pagination.href.previous }}">Previous</a>
+   {% if pagination.href.next %}
+   ~
+   {% endif %}
+{% endif %}
+
+{% if pagination.href.next %}
+<a href="{{ pagination.href.next }}">Next</a>
+{% endif %}
+</p>

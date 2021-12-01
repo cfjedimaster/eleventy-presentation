@@ -4,12 +4,16 @@ title: Data test
 ---
 
 <h2>Cats</h2>
-
+{{cats.name[0]}}
 <ul>
-{% for cat in cats %}
-<li><a href="/cats/{{cat.name | slug }}/">{{ cat.name }}</a></li>
+{% for cat in cats limit:5 %}
+<li>{{ cat.name }}</li>
 {% endfor %}
 </ul>
+
+<p>
+	<a href="/cats">All cats...</a>
+</p>
 
 <h2>Films</h2>
 
